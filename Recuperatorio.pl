@@ -84,4 +84,8 @@ doctorSegunPaciente(Medico, Paciente):-
 %muchaExperiencia(Medico).
 %Medico = juan
 
+%Punto 3
+
+%doctorSegunPaciente(maria, Paciente).
+%Paciente = estela 
 
