@@ -60,9 +60,10 @@ muchaExperiencia(Medico):-
 %Punto 3-- 
 
 %Buscar doctor segun el sintoma del paciente
-doctorSegunPaciente(Paciente):-
+doctorSegunPaciente(Medico, Paciente):-
     paciente(Paciente,Sintoma),
-    forall(medico(Medico,_,Especialidad), ocupacion(Especialidad,Sintoma)).
+    medico(Medico,_, Especialidad),
+    forall( ocupacion(Especialidad,Sintoma), medico(Medico,_,Especialidad)).
 
 %Los predicados son inversibles si al preguntar podemos saber de forma generica mediante un parametro, quienes cumplen la condicion del predicado
 
