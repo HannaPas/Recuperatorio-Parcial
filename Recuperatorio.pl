@@ -68,7 +68,7 @@ doctorSegunPaciente(Paciente):-
 
 %Ejemplos----
 
-%Punto 0 (No es inversible)
+%Punto 0
 
 %masDeUnaEspecialidad(Medico).
 %Medico = maria
@@ -83,4 +83,4 @@ doctorSegunPaciente(Paciente):-
 %muchaExperiencia(Medico).
 %Medico = juan
 
-%Punto 3 
+
