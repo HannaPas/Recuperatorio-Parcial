@@ -57,22 +57,37 @@ malapraxis medico = medico { especialidades = []}
 
 -- aumento en 1 la edad y cada año de la especialidad en 1
 cumpleaños :: Medico -> Medico
-cumpleaños medico =  medico{edad = edad medico + 1 , añosEspecialidad = sumar1 (añosEspecialidad medico)}
+cumpleaños medico =  medico{edad = edad medico + 1 , añosEspecialidad = sumar1 medico}
 
 --funcion que me permite sumar 1 año a cada año de especialidad
+sumar1 :: Medico -> [Int]
 sumar1 medico = map (+1) (añosEspecialidad medico) 
  
+-- estudian georntologia medicos
 
-estudiarGerontologia :: Medico -> [Medico]
+estudiarGerontologia :: [Medico] -> [Medico]
 estudiarGerontologia medicos = filtrarOncologos medicos
 
-filtrarOncologos :: Medico -> [Medico]
-filtrarOncologos medicos = filter esOncologo (especialidades medicos)
+-- filtro si cumple que es oncologo
+filtrarOncologos :: [Medico] -> [Medico]
+filtrarOncologos medicos = filter esOncologo medicos
 
+-- determino si un medico es oncologo
 esOncologo :: Medico -> Bool
 esOncologo medico = elem "oncologo" (especialidades medico)
 
+-- determino si los medicos que se llaman leopoldo
 
-esLeopoldo medicos = map (nombre medicos ) == "Leopoldo"
+esLeopoldo :: Medico -> Bool
+esLeopoldo medico = "Leopoldo" == nombre medico
 
-juiciomalapraxis medicos = filter malapraxis (esLeopoldo medicos)
+juiciomalapraxis :: [Medico] -> [Medico]
+--aplico malapraxis a todos los que se llamen Leopoldo
+juiciomalapraxis medicos = map malapraxis (filter esLeopoldo medicos)
+
+-- cambiar nombre del medico en caso que tenga 2 especialidades
+cambiarNombre :: Medico -> String -> Medico
+cambiarNombre medico nuevoNombre 
+ | masDeUnaEspecialidad medico = medico {nombre = nuevoNombre}
+ | otherwise = medico
+ 
