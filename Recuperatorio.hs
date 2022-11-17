@@ -55,8 +55,24 @@ esNutricionista medico = elem "nutricionista" (especialidades medico)
 malapraxis :: Medico -> Medico
 malapraxis medico = medico { especialidades = []}
 
+-- aumento en 1 la edad y cada año de la especialidad en 1
 cumpleaños :: Medico -> Medico
-cumpleaños medico =  medico{edad = edad medico + 1 , añosEspecialidad =  sumar1 (añosEspecialidad medico)}
+cumpleaños medico =  medico{edad = edad medico + 1 , añosEspecialidad = sumar1 (añosEspecialidad medico)}
 
-sumar1 medico = filter +1 (añosEspecialidad medico) 
+--funcion que me permite sumar 1 año a cada año de especialidad
+sumar1 medico = map (+1) (añosEspecialidad medico) 
  
+
+estudiarGerontologia :: Medico -> [Medico]
+estudiarGerontologia medicos = filtrarOncologos medicos
+
+filtrarOncologos :: Medico -> [Medico]
+filtrarOncologos medicos = filter esOncologo (especialidades medicos)
+
+esOncologo :: Medico -> Bool
+esOncologo medico = elem "oncologo" (especialidades medico)
+
+
+esLeopoldo medicos = map (nombre medicos ) == "Leopoldo"
+
+juiciomalapraxis medicos = filter malapraxis (esLeopoldo medicos)
